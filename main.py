@@ -72,10 +72,16 @@ def multiply(num1, num2):
         if not list_of_problems:
             session.pop('problems')
             session.pop('completed')
+            redirect(url_for('finished'))
 
     problem = list_of_problems[0]
     return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
                            problems_completed=problems_completed, show_error=show_error, total_problems=total_problems)
+
+
+@app.route('/finished')
+def finished():
+    return render_template('finished.html')
 
 
 if __name__ == '__main__':
