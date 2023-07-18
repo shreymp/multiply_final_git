@@ -51,32 +51,29 @@ def multiply(num1, num2):
         session['problems'] = generate_problems(num1, num2)
         session['completed'] = 0
 
-    list_of_problems = session['problems']
-    problems_completed = session['completed']
     show_error = False
     total_problems = num1 * num2
 
     if request.method == 'POST':
         user_answer = int(request.form['ans'])
-        correct_answer = list_of_problems[0][0] * list_of_problems[0][1]
+        correct_answer = session['problems'][0][0] * session['problems'][0][1]
 
         if user_answer == correct_answer:
-            list_of_problems.pop(0)
-            problems_completed += 1
+            session['problems'].pop(0)
+            session['completed'] += 1
         else:
             show_error = True
 
-        session['problems'] = list_of_problems
-        session['completed'] = problems_completed
-
-        if not list_of_problems:
+        if not session['problems']:
             session.pop('problems')
             session.pop('completed')
+            clear_session()
+            session.clear()
             return redirect(url_for('finished'))
 
-    problem = list_of_problems[0]
+    problem = session['completed'][0]
     return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
-                           problems_completed=problems_completed, show_error=show_error, total_problems=total_problems)
+                           problems_completed=session['completed'], show_error=show_error, total_problems=total_problems)
 
 
 @app.route('/finished')
