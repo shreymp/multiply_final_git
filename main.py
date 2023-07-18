@@ -73,8 +73,9 @@ def multiply(num1, num2):
             session.pop('problems')
             session.pop('completed')
             redirect(url_for('finished'))
+        else:
+            problem = list_of_problems[0]
 
-    problem = list_of_problems[0]
     return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
                            problems_completed=problems_completed, show_error=show_error, total_problems=total_problems)
 
