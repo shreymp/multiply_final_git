@@ -69,21 +69,14 @@ def multiply(num1, num2):
         session['problems'] = list_of_problems
         session['completed'] = problems_completed
 
-    if not list_of_problems:
-        session.pop('problems')
-        session.pop('completed')
-        redirect(url_for('finished'))
+        if not list_of_problems:
+            session.pop('problems')
+            session.pop('completed')
+            return redirect(url_for('finished'))
 
-    try:
-        problem = list_of_problems[0]
-    except IndexError:
-        redirect(url_for('finished'))
-    except:
-        redirect(url_for('home'))
-    else:
-        return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
-                               problems_completed=problems_completed, show_error=show_error,
-                               total_problems=total_problems)
+    problem = list_of_problems[0]
+    return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
+                           problems_completed=problems_completed, show_error=show_error, total_problems=total_problems)
 
 
 @app.route('/finished')
