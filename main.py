@@ -71,7 +71,7 @@ def multiply(num1, num2):
             session.clear()
             return redirect(url_for('finished'))
 
-    problem = session['completed'][0]
+    problem = session['problems'][0]
     return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
                            problems_completed=session['completed'], show_error=show_error, total_problems=total_problems)
 
