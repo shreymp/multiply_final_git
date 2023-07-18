@@ -80,10 +80,10 @@ def multiply(num1, num2):
         redirect(url_for('finished'))
     except:
         redirect(url_for('home'))
-
-
-    return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
-                           problems_completed=problems_completed, show_error=show_error, total_problems=total_problems)
+    else:
+        return render_template('multiply.html', problem=problem, num1=num1, num2=num2,
+                               problems_completed=problems_completed, show_error=show_error,
+                               total_problems=total_problems)
 
 
 @app.route('/finished')
