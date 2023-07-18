@@ -69,10 +69,10 @@ def multiply(num1, num2):
         session['problems'] = list_of_problems
         session['completed'] = problems_completed
 
-        if not list_of_problems:
-            session.pop('problems')
-            session.pop('completed')
-            redirect(url_for('finished'))
+    if not list_of_problems:
+        session.pop('problems')
+        session.pop('completed')
+        redirect(url_for('finished'))
 
     problem = list_of_problems[0]
 
