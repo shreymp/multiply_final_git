@@ -1,0 +1,9 @@
+things todo:
+
+1. add back button in multiply.html
+
+2. make more user friendly
+
+3. add more features
+
+4. add finished page DONE
